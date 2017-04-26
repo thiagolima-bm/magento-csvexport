@@ -52,7 +52,7 @@ class Acaldeira_CsvExport_Model_Exporter
         } catch (Exception $e) {
 
             echo $e->getMessage() . PHP_EOL;
-            
+
             $this->getLogger()->log('accsvexport', $e->getMessage());
         }
 
@@ -160,16 +160,8 @@ class Acaldeira_CsvExport_Model_Exporter
         ;
 
         $_templateProcessor = Mage::getModel('core/email_template');
-        foreach ($_collection as $_customer) {
-            /* @var $_customer Mage_Customer_Model_Customer */
-            $_address       = $_customer->getDefaultBillingAddress();
-            $_group         = Mage::getModel('customer/group')->load($_customer->getGroupId());
-            $_customer->setData('address', $_address);
-            $_customer->setData('group', $_group);
-            $_templateProcessor->setTemplateText($this->_template);
-            $data = $_templateProcessor->getProcessedTemplate(array('customer' => $_customer));
-            $this->_csvData[] = explode($this->_getHelper()->getDelimiter(), $data);
-        }
+        $_templateProcessor->setTemplateText($this->_template);
+        $this->_iteratePagination($_collection, 'customer', $_templateProcessor);
     }
 
     /**
@@ -182,11 +174,8 @@ class Acaldeira_CsvExport_Model_Exporter
         ;
 
         $_templateProcessor = Mage::getModel('core/email_template');
-        foreach ($_collection as $_order) {
-            $_templateProcessor->setTemplateText($this->_template);
-            $data = $_templateProcessor->getProcessedTemplate(array('order' => $_order));
-            $this->_csvData[] = explode($this->_getHelper()->getDelimiter(), $data);
-        }
+        $_templateProcessor->setTemplateText($this->_template);
+        $this->_iteratePagination($_collection, 'order', $_templateProcessor);
     }
 
     /**
@@ -198,12 +187,35 @@ class Acaldeira_CsvExport_Model_Exporter
             ->getCollection()
             ->addAttributeToSelect('*')
         ;
-
         $_templateProcessor = Mage::getModel('core/email_template');
-        foreach ($_collection as $_product) {
-            $_templateProcessor->setTemplateText($this->_template);
-            $data = $_templateProcessor->getProcessedTemplate(array('product' => $_product));
-            $this->_csvData[] = explode($this->_getHelper()->getDelimiter(), $data);
-        }
+        $_templateProcessor->setTemplateText($this->_template);
+        $this->_iteratePagination($_collection, 'product', $_templateProcessor);
+    }
+
+    /**
+     * @param $collection
+     * @param $objectName
+     * @param $templateProcessor
+     */
+    protected function _iteratePagination($collection, $objectName, $templateProcessor)
+    {
+        $collection->setPageSize(100);
+        $pages = $collection->getLastPageNumber();
+        $currentPage = 1;
+
+        do {
+            $collection->setCurPage($currentPage);
+            $collection->load();
+
+            foreach ($collection as $_item) {
+
+                $data = $templateProcessor->getProcessedTemplate(array($objectName => $_item));
+                $this->_csvData[] = explode($this->_getHelper()->getDelimiter(), $data);
+            }
+
+            $currentPage++;
+            //clear collection and free memory
+            $collection->clear();
+        } while ($currentPage <= $pages);
     }
 }
