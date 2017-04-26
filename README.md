@@ -1,4 +1,4 @@
-# Magento CSV Export Extension
+# Magento (huge)CSV Export Extension
 
 Extension that enables the generation of large CSV files.
 
