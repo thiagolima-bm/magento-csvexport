@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Acaldeira_All>
+            <version>0.1.0</version>
+        </Acaldeira_All>
+    </modules>
+    <global>
+        <helpers>
+            <acall>
+                <class>Acaldeira_All_Helper</class>
+            </acall>
+        </helpers>
+    </global>
+</config>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Acaldeira_All
+ *
+ * @category    Acaldeira
+ * @package     Acaldeira_All
+ * @copyright   Copyright (c) 2017 Acaldeira. (http://www.acaldeira.com.br)
+ */
+-->
+<config>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+                <children>
+                    <system>
+                        <children>
+                        	<config>
+                        		<children>
+	                                <acall>
+	                                    <title>Acadeira</title>
+	                                    <sort_order>1000</sort_order>
+	                                </acall>
+								</children>
+							</config>
+                        </children>
+                   </system>
+                </children>
+            </admin>
+		</resources>
+	</acl>
+</config>

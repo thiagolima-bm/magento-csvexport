@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <cms>
+                        <children>
+                            <accsvexport translate="title" module="accsvexport">
+                                <title>Csv Exporter</title>
+                                <sort_order>9999</sort_order>
+                                <children>
+                                    <pixel translate="title">
+                                        <title>Manage Csv Exporter</title>
+                                        <sort_order>0</sort_order>
+                                    </pixel>
+                                </children>
+                            </accsvexport>
+                        </children>
+                    </cms>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <accsvexport translate="title" module="accsvexport">
+                                        <title>Csv Exporter Manager Section</title>
+                                        <sort_order>100030</sort_order>
+                                    </accsvexport>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

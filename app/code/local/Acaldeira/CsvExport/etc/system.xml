@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <accsvexport translate="label" module="accsvexport">
+            <label>Csv exporter</label>
+            <tab>acall</tab>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>0</show_in_store>
+            <sort_order>100100</sort_order>
+            <groups>
+                <general translate="label" module="accsvexport">
+                    <label>CSV Exporter</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable / Disable functionality</comment>
+                        </enabled>
+                        <delimiter translate="label">
+                            <label>Delimiter</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </delimiter>
+                        <enclosure translate="label">
+                            <label>Enclosure</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enclosure>
+                        <cron_expr>
+                            <label>Task schedule (cron syntax)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cron_expr>
+                        <folder>
+                            <label>Export folder</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>must be any folder inside /path/to/magento/var/export</comment>
+                        </folder>
+                    </fields>
+                </general>
+                <customer translate="label" module="accsvexport">
+                    <label>Customers</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <header translate="label">
+                            <label>Header</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header>
+                        <template translate="label">
+                            <label>Template</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<small>Available objects: <br>- <i>{{var customer.*}}</i><br>Please replace <i>*</i> by the attribute code of the object:<br>(i.e.:<i>{{var customer.name}}</i>)]]></comment>
+                        </template>
+                        <info translate="label comment">
+                            <label>File Info</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>accsvexport/adminhtml_system_config_file_info_customer</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </info>
+                        <update translate="label comment">
+                            <label>Generate new file</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>accsvexport/adminhtml_system_config_button_export_customer</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Will update the previous updated file.</comment>
+                        </update>
+                        <filename>
+                            <label>Name of the csv file (with the extension .csv)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>e.g.: customers.csv</comment>
+                        </filename>
+                    </fields>
+                </customer>
+                <order  translate="label" module="accsvexport">
+                    <label>Orders</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <header translate="label">
+                            <label>Header</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header>
+                        <template translate="label">
+                            <label>Template</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<small>Available objects: <br>- <i>{{var order.*}}</i><br>Please replace <i>*</i> by the attribute code of the object:<br>(i.e.:<i>{{var order.grand_total}}</i>)]]></comment>
+                        </template>
+                        <info translate="label comment">
+                            <label>File Info</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>accsvexport/adminhtml_system_config_file_info_order</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </info>
+                        <update translate="label comment">
+                            <label>Generate new file</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>accsvexport/adminhtml_system_config_button_export_order</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Will update the previous updated file.</comment>
+                        </update>
+                        <filename>
+                            <label>Name of the csv file (with the extension .csv)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>e.g.: orders.csv</comment>
+                        </filename>
+                    </fields>
+                </order>
+                <catalog  translate="label" module="accsvexport">
+                    <label>Catalog</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <header translate="label">
+                            <label>Header</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header>
+                        <template translate="label">
+                            <label>Template</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<small>Available objects: <br>- <i>{{var product.*}}</i><br>Please replace <i>*</i> by the attribute code of the object:<br>(i.e.:<i>{{var product.sku}}</i>)]]></comment>
+                        </template>
+                        <info translate="label comment">
+                            <label>File Info</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>accsvexport/adminhtml_system_config_file_info_catalog</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </info>
+                        <update translate="label comment">
+                            <label>Generate new file</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>accsvexport/adminhtml_system_config_button_export_catalog</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Will update the previous updated file.</comment>
+                        </update>
+                        <filename>
+                            <label>Name of the csv file (with the extension .csv)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>e.g.: products.csv</comment>
+                        </filename>
+                    </fields>
+                </catalog>
+            </groups>
+        </accsvexport>
+    </sections>
+</config>
