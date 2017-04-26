@@ -3,7 +3,7 @@
 Extension that enables the generation of large CSV files.
 
 With this extension you can generate and download huge csv files. Every time you need a updated csv you can go to the admin panel and trigger the cron. 
-The cron is only executed when you say so, I mean, you says to the extension: I want a new updated csv! This behavior avoids wasting of processing. (Let´s save the environment!)
+The cron is only executed when you say so, I mean, you say to the extension: I want a new updated csv! This behavior avoids wasting of processing. (Let´s save the environment!)
 ## Features
 
 * Export Customers
