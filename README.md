@@ -27,6 +27,8 @@ This extension works is pretty much plug and play. You may need enabled it :)
 To do so, go to System > Configuration > Acaldeira > Csv Exporter
 In the tab CSV Exporter: Enabled = Yes
 
+* You can use as many attributes as you want, these are just a simple example.
+
 Customers Header
 ```bash
 name;email;gender:dob
