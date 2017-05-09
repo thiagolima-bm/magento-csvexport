@@ -2,15 +2,31 @@
 <config>
     <modules>
         <Acaldeira_CsvExport>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </Acaldeira_CsvExport>
     </modules>
     <global>
         <models>
             <accsvexport>
                 <class>Acaldeira_CsvExport_Model</class>
+                <resourceModel>accsvexport_resource</resourceModel>
             </accsvexport>
+            <accsvexport_resource>
+                <class>Acaldeira_CsvExport_Model_Resource</class>
+                <entities>
+                    <report>
+                        <table>accsvexport_report</table>
+                    </report>
+                </entities>
+            </accsvexport_resource>
         </models>
+        <resources>
+            <accsvexport_setup>
+                <setup>
+                    <module>Acaldeira_CsvExport</module>
+                </setup>
+            </accsvexport_setup>
+        </resources>
         <blocks>
             <accsvexport>
                 <class>Acaldeira_CsvExport_Block</class>
@@ -49,6 +65,9 @@
             <customer>
                 <filename>customers.csv</filename>
             </customer>
+            <reports>
+                <cron_min_interval>15</cron_min_interval>
+            </reports>
         </accsvexport>
     </default>
     <crontab>
@@ -62,6 +81,21 @@
                 </run>
                 <groups>all</groups>
             </accsvexport_process_modes>
+            <accsvexport_process_reporters>
+                <schedule>
+                    <cron_expr>*/1 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>accsvexport/cron::generatecrons</model>
+                </run>
+                <groups>all</groups>
+            </accsvexport_process_reporters>
+            <accsvexport_process_reporters_run>
+                <run>
+                    <model>accsvexport/reporter::run</model>
+                </run>
+                <groups>all</groups>
+            </accsvexport_process_reporters_run>
         </jobs>
     </crontab>
 </config>

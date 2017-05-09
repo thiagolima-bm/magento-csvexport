@@ -246,4 +246,12 @@ class Acaldeira_CsvExport_Helper_Data extends Mage_Core_Helper_Abstract
         return $this->getConf('general', 'folder');
     }
 
+    /**
+     * @return bool
+     */
+    public function isCsvExporterEnabled()
+    {
+        return (bool) $this->getConf('general', 'enabled');
+    }
+
 }

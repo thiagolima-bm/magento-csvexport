@@ -30,6 +30,7 @@ class Acaldeira_CsvExport_Model_Exporter
             return;
 
         try {
+
             $mode = $this->_searchMode();
 
             if ($mode) {
@@ -52,7 +53,7 @@ class Acaldeira_CsvExport_Model_Exporter
         } catch (Exception $e) {
 
             echo $e->getMessage() . PHP_EOL;
-
+            
             $this->getLogger()->log('accsvexport', $e->getMessage());
         }
 
@@ -199,7 +200,7 @@ class Acaldeira_CsvExport_Model_Exporter
      */
     protected function _iteratePagination($collection, $objectName, $templateProcessor)
     {
-        $collection->setPageSize(100);
+        $collection->setPageSize(10);
         $pages = $collection->getLastPageNumber();
         $currentPage = 1;
 
