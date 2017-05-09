@@ -77,6 +77,25 @@ Catalog Template
 
 The code is self explanatory but if you have any questions, do not hesitate in contacting me.
 
+If you do not know how to create a mysql view, is pretty simple:
+
+Supposing that you have this query to extract the coupon usage report:
+
+```bash
+select u.coupon_id, c.code, count(*) as total from salesrule_coupon_usage u, salesrule_coupon c where u.coupon_id=c.coupon_id  group by u.coupon_id;
+```
+And the query for creating the view becomes:
+
+```bash
+create view view_coupon_usage AS select u.coupon_id, c.code, count(*) as total from salesrule_coupon_usage u, salesrule_coupon c where u.coupon_id=c.coupon_id  group by u.coupon_id;
+```
+
+This is it. Pretty simple. If you open your database, you will probably see a new table (view) "view_coupon_usage"
+
+![Custom Mysql View Report](http://image.prntscr.com/image/a1f73afd84974fbfb34cbd369f4e955f.png "Custom Mysql View Report")
+
+Now you can go to Report > CSV Reports > Add Report and create a new custom report. (use the same view name "view_coupon_usage" in this case)
+
 
 ## Contributing
 
