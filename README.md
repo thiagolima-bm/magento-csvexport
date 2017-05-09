@@ -9,6 +9,7 @@ The cron is only executed when you say so, I mean, you say to the extension: I w
 ![Customer Config](http://image.prntscr.com/image/3d4e1924386e4bae87d32d82f27d54d3.png "Main Configuration")
 
 It also enables you create report from views or tables
+
 ![Custom Report](http://image.prntscr.com/image/b1a79aab40194f89940bb2b3ea3df995.png "Custom Report Configuration")
 
 ## Features
@@ -32,10 +33,13 @@ This extension works is pretty much plug and play. You may need enabled it :)
 To do so, go to System > Configuration > Acaldeira > Csv Exporter
 In the tab CSV Exporter: Enabled = Yes
 
-In order to enable the custom reports
+In order to enable the custom reports, you have to enable it at: System > Configuration > Acaldeira > Csv Exporter
+
+![Custom Report](http://image.prntscr.com/image/7f135101adc74037822241d22456bd44.png "Custom Report Configuration")
+
+Then you can create as many report as you want :)
+
 ![Custom Report](http://image.prntscr.com/image/dc4bdd754d30494b9d2591bb19bc823c.png "Custom Report Configuration")
-You have to enable it at: System > Configuration > Acaldeira > Csv Exporter
-![Custom Report](http://image.prntscr.com/image/7f135101adc74037822241d22456bd44.png"Custom Report Configuration")
 
 
 
