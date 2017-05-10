@@ -10,9 +10,9 @@
 $installer = $this;
 
 $installer->getConnection()
-    ->addColumn($installer->getTable('cron/schedule'), 'custom_data', array(
+    ->addColumn($installer->getTable('accsvexport/report'), 'fields', array(
         'TYPE'      => Varien_Db_Ddl_Table::TYPE_TEXT,
-        'LENGTH'    => 255,
+        'LENGTH'    => Varien_Db_Ddl_Table::DEFAULT_TEXT_SIZE,
         'NULLABLE'  => true,
-        'COMMENT'   => 'Custom Data'
+        'COMMENT'   => 'Fields'
     ));

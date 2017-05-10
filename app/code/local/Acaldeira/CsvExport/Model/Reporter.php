@@ -175,8 +175,8 @@ class Acaldeira_CsvExport_Model_Reporter
                 if ($lastRun > time() - Mage::getStoreConfig(self::CRON_REPORT_SCHEDULER_MIN_INTERVAL)*60) {
                     return $this;
                 }
-
-                $this->setQuery("SELECT * FROM ".$report->getViewName());
+                $fields = $report->getFields();
+                $this->setQuery("SELECT $fields FROM ".$report->getViewName());
                 $this->setFilename($report->getName());
                 $this->createCsv();
 

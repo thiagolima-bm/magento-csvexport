@@ -33,6 +33,25 @@ class Acaldeira_CsvExport_Block_Adminhtml_Report_Edit_Tab_Form extends Mage_Admi
             'note'      => 'name of the view or table in database',
         ));
 
+        $block = $this->getLayout()->createBlock('accsvexport/adminhtml_report_edit_tab_button_loadfields');
+
+        $tableFieldOptions = [];
+        if ($data = Mage::registry('report_data')->getData()) {
+            foreach (explode(',', $data['fields']) as $value) {
+                $tableFieldOptions[] = array(
+                    'value' => $value,
+                    'label' => $value
+                );
+            }
+        }
+
+        $fieldset->addField('table_fields', 'multiselect', array(
+            'label'     => $this->_getHelper()->__('Fields'),
+            'name'      => 'fields',
+            'after_element_html' => $block->toHtml(),
+            'values' => $tableFieldOptions,
+        ));
+
         $fieldset->addField('cron_expr', 'text', array(
             'label'     => $this->_getHelper()->__('Cron Expr'),
             'class'     => 'required-entry',
@@ -53,8 +72,9 @@ class Acaldeira_CsvExport_Block_Adminhtml_Report_Edit_Tab_Form extends Mage_Admi
             'options'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toArray()
         ));
 
-        if ( Mage::registry('report_data') ) {
-            $form->setValues(Mage::registry('report_data')->getData());
+        if ($data = Mage::registry('report_data')) {
+            $data['table_fields'] = explode(',', $data['fields']);
+            $form->setValues($data);
         }
 
         return parent::_prepareForm();

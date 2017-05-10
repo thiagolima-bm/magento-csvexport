@@ -43,6 +43,8 @@ class Acaldeira_CsvExport_Adminhtml_Csvexport_ReportController extends Mage_Admi
 
             // save model
             try {
+                $fields = implode(',', $data->getData('fields'));
+                $data->setData('fields', $fields);
                 $model->addData($data->getData());
                 $model->setId($id);
                 $this->_getSession()->setFormData($model->getData());
@@ -156,6 +158,40 @@ class Acaldeira_CsvExport_Adminhtml_Csvexport_ReportController extends Mage_Admi
         }
 
         $this->_redirect('*/*/index');
+    }
+
+    public function tableFieldsAction()
+    {
+        $tableName = $this->getRequest()->getParam('view_name');
+        $fields = [];
+        $actionResult = [];
+
+        if ($tableName) {
+
+            try {
+                preg_match('/^[A-Za-z0-9_]+$/', $tableName, $matches);
+
+                if (!$matches) {
+                    Mage::throwException('Invalid view name. Only numbers, letters and underscore allowed');
+                }
+                $query = "SHOW COLUMNS FROM $tableName";
+                $resource = Mage::getSingleton('core/resource');
+                $readConnection = $resource->getConnection('core_read');
+                $result = $readConnection->fetchAll($query);
+
+                foreach ($result as $row) {
+                    $fields[] = $row['Field'];
+                }
+
+                $actionResult['success'] = true;
+                $actionResult['body'] = $fields;
+
+            } catch (Exception $e) {
+                $actionResult['error'] = $e->getMessage();
+            }
+
+        }
+        $this->getResponse()->setBody(json_encode($actionResult));
     }
 
 }
