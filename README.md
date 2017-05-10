@@ -10,7 +10,7 @@ The cron is only executed when you say so, I mean, you say to the extension: I w
 
 It also enables you create report from views or tables
 
-![Custom Report](http://image.prntscr.com/image/b1a79aab40194f89940bb2b3ea3df995.png "Custom Report Configuration")
+![Custom Report](http://image.prntscr.com/image/579b84373491400ea627baca6a3b5eee.png "Custom Report Configuration")
 
 ## Features
 
