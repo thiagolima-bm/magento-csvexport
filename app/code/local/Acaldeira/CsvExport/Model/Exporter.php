@@ -9,6 +9,8 @@
 set_time_limit(0);
 ini_set('memory_limit', '-1');
 
+use Acaldeira_CsvExport_Model_Filter_Template as Template;
+
 class Acaldeira_CsvExport_Model_Exporter
 {
     const MODE_CUSTOMER     = 'mode.customer';
@@ -53,7 +55,7 @@ class Acaldeira_CsvExport_Model_Exporter
         } catch (Exception $e) {
 
             echo $e->getMessage() . PHP_EOL;
-            
+
             $this->getLogger()->log('accsvexport', $e->getMessage());
         }
 
@@ -160,8 +162,7 @@ class Acaldeira_CsvExport_Model_Exporter
             ->addAttributeToSelect('*')
         ;
 
-        $_templateProcessor = Mage::getModel('core/email_template');
-        $_templateProcessor->setTemplateText($this->_template);
+        $_templateProcessor = Mage::getModel('accsvexport/filter_template');
         $this->_iteratePagination($_collection, 'customer', $_templateProcessor);
     }
 
@@ -174,8 +175,7 @@ class Acaldeira_CsvExport_Model_Exporter
             ->getCollection()
         ;
 
-        $_templateProcessor = Mage::getModel('core/email_template');
-        $_templateProcessor->setTemplateText($this->_template);
+        $_templateProcessor = Mage::getModel('accsvexport/filter_template');
         $this->_iteratePagination($_collection, 'order', $_templateProcessor);
     }
 
@@ -188,15 +188,14 @@ class Acaldeira_CsvExport_Model_Exporter
             ->getCollection()
             ->addAttributeToSelect('*')
         ;
-        $_templateProcessor = Mage::getModel('core/email_template');
-        $_templateProcessor->setTemplateText($this->_template);
+        $_templateProcessor = Mage::getModel('accsvexport/filter_template');
         $this->_iteratePagination($_collection, 'product', $_templateProcessor);
     }
 
     /**
      * @param $collection
      * @param $objectName
-     * @param $templateProcessor
+     * @param $templateProcessor Template
      */
     protected function _iteratePagination($collection, $objectName, $templateProcessor)
     {
@@ -210,7 +209,8 @@ class Acaldeira_CsvExport_Model_Exporter
 
             foreach ($collection as $_item) {
 
-                $data = $templateProcessor->getProcessedTemplate(array($objectName => $_item));
+                $templateProcessor->setVariables(array($objectName => $_item));
+                $data = $templateProcessor->filter($this->_template);
                 $this->_csvData[] = explode($this->_getHelper()->getDelimiter(), $data);
             }
 
