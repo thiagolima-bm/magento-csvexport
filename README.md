@@ -58,21 +58,28 @@ Orders Header
 ```bash
 increment_id;created_at;grand_total;customer_email
 ```
+
 Orders Template
 ```bash
 {{var order.increment_id}};{{var order.created_at}};{{var order.grand_total}};{{var order.customer_email}}
-
 ```
 
 Catalog Header
 ```bash
 name;sku;price
+
 ```
 Catalog Template
 ```bash
 {{var product.name}};{{var product.sku}};{{var product.price}}
 ```
 
+You can also use loops if you need iterate through order items, e.g.:
+```bash
+{{for item in order.all_visible_items}}
+{{var loop.index}};{{var item.sku}};{{var item.name}};{{var item.price}};{{var item.ordered_qty}}
+{{/for}} 
+```
 ## Documentation
 
 The code is self explanatory but if you have any questions, do not hesitate in contacting me.
