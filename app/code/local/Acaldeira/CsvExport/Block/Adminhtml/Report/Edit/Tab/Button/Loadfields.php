@@ -4,7 +4,7 @@
  *
  * @category    Acaldeira
  * @package     Acaldeira_CsvExport
- * @copyright   Copyright (c) 2017 Interactiv4. (http://www.acaldeira.com.br)
+ * @copyright   Copyright (c) 2017 Acaldeira. (http://www.acaldeira.com.br)
  */
 class Acaldeira_CsvExport_Block_Adminhtml_Report_Edit_Tab_Button_Loadfields extends Mage_Core_Block_Template
 {
